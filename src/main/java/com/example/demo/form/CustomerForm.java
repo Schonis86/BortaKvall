@@ -1,65 +1,41 @@
-package com.example.demo.entities;
+package com.example.demo.form;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "Customer")
-public class Customer {
-
-
-
+public class CustomerForm {
+    @Size(min = 11, max = 11)
+    @Pattern(regexp = "^[0-9]{6}-[0-9]{4}")
     private String socialNumber;
-
+    @NotNull
+    @Size(min = 2)
     private String fName;
-
+    @NotNull
+    @Size(min = 2)
     private String lName;
-
+    @NotNull
+    @Size(min = 2)
     private String address;
-
+    @NotNull
+    @Size(min = 6, max = 6)
+    @Pattern(regexp = "^[0-9]{3}\\s[0-9]{2}")
     private String zipCode;
-
+    @NotNull
+    @Size(min = 2)
     private String city;
-
+    @NotNull
+    @Size(min = 2)
     private String country;
-
+    @NotNull
+    @Size(min = 9, max = 11)
+    @Pattern(regexp = "[0-9]{3,4}-[0-9]{6,7}")
     private String phone;
-
+    @NotNull
+    @Size(min = 2)
     private String email;
 
-    private List<Movie> movies;
 
-    public Customer(){
-
-    }
-
-
-    public Customer(String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email) {
-        this.socialNumber = socialNumber;
-        this.fName = fName;
-        this.lName = lName;
-        this.address = address;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
-        this.phone = phone;
-        this.email = email;
-    }
-
-    public Customer(String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email, List<Movie> movies) {
-        this.socialNumber = socialNumber;
-        this.fName = fName;
-        this.lName = lName;
-        this.address = address;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
-        this.phone = phone;
-        this.email = email;
-        this.movies = movies;
-    }
-    @Id
     public String getSocialNumber() {
         return socialNumber;
     }
@@ -130,14 +106,5 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @ManyToMany(mappedBy = "customers")
-    public List<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
     }
 }

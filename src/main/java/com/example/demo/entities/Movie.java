@@ -10,20 +10,19 @@ import java.util.List;
 public class Movie {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long produktNumber;
-    @NotNull
     private String name;
     private String description;
     private String releaseDate;
-    @NotNull
     private String category;
-    @NotNull
     private String format;
-    @NotNull
     private boolean avaliable;
-//    private List<Customer> customers;
+    private List<Customer> customers;
+
+    public Movie(){
+
+    }
 
     public Movie(String name, String description, String releaseDate, String category, String format, boolean avaliable) {
         this.name = name;
@@ -34,6 +33,9 @@ public class Movie {
         this.avaliable = avaliable;
     }
 
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getProduktNumber() {
         return produktNumber;
     }
@@ -90,11 +92,12 @@ public class Movie {
         this.avaliable = avaliable;
     }
 
- /*   public List<Customer> getCustomers() {
+    @ManyToMany()
+    public List<Customer> getCustomers() {
         return customers;
     }
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
-    }*/
+    }
 }
