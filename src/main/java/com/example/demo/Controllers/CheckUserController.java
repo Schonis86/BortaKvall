@@ -17,7 +17,7 @@ public class CheckUserController {
 
     @GetMapping("/home")
     public String goHome(){
-        return "/home/home";
+        return "/home/index";
     }
 
     @PostMapping("/home")

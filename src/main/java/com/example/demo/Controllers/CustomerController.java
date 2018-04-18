@@ -29,7 +29,7 @@ public class CustomerController {
 
     @GetMapping("/addcustomer")
     public String openSaveCustomer(CustomerForm customerForm){
-        return "customer/addcustomer";
+        return "customer/registrationform";
     }
 
 
@@ -41,7 +41,7 @@ public class CustomerController {
             return "customer/addcustomer";
         }
         customerR.save(new Customer(socialNumber, fName, lName, address, zipCode, city, country, phone, email));
-        return "redirect:/customer/customers";
+        return "redirect:/home";
     }
 
 }

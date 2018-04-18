@@ -6,6 +6,8 @@
     <title class="headerThing">Borta Kväll AB</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+
+
 </head>
 <body>
 <header>
@@ -17,17 +19,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home</a>
+                <a class="nav-item nav-link" href="/home">Home</a>
                 <a class="nav-item nav-link " href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link"  href="/customer/addcustomer"
-                >Add Customer</a>
+                <a class="nav-item nav-link"  href="/customer/addcustomer">Add Customer</a>
             </div>
         </div>
     </nav>
 </header>
-
 
 <form method="post" th:object="${customerForm}">
     <div class="form-row">
