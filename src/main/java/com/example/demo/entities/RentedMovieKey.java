@@ -5,20 +5,24 @@ import java.io.Serializable;
 
 @Embeddable
 public class RentedMovieKey implements Serializable {
-    private Long produktNumber;
+    private Long productNumber;
     private String socialNumber;
 
-    public RentedMovieKey(Long produktNumber, String socialNumber) {
-        this.produktNumber = produktNumber;
+    public RentedMovieKey(Long productNumber, String socialNumber) {
+        this.productNumber = productNumber;
         this.socialNumber = socialNumber;
     }
 
-    public Long getProduktNumber() {
-        return produktNumber;
+    public RentedMovieKey(){
+
     }
 
-    public void setProduktNumber(Long produktNumber) {
-        this.produktNumber = produktNumber;
+    public Long getProduktNumber() {
+        return productNumber;
+    }
+
+    public void setProduktNumber(Long productNumber) {
+        this.productNumber = productNumber;
     }
 
     public String getSocialNumber() {

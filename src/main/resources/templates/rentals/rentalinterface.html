@@ -47,7 +47,7 @@
 </div>
 
 <div>
-    <form  method="post">
+    <form th:action="@{/rentals/rentalinterface}" method="post">
         <label>ArtNr</label>
         <input type="text" name="productNumber">
         <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
@@ -70,7 +70,7 @@
     <th:block th:each="movie : ${rentedMovies}">
         <tr id="studentTable" >
             <td th:text="${movie.productNumber}">dummy</td>
-            <td th:text="${movie.name}">dummy</td>
+
             <td th:text="${movie.fDate}">dummy</td>
             <td th:text="${movie.Tdate}">dummy</td>
             <td></td>

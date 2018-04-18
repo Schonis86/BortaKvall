@@ -11,11 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 
 @Controller
+@RequestMapping("/rentals")
 public class RentalController {
 
     @Autowired
@@ -26,24 +28,26 @@ public class RentalController {
     MovieRepository movieRep;
 
 
-    @GetMapping("rentals/rentalinterface")
-    public String rentalsStart(Model model, String socialNumber) {
+    @GetMapping("/rentalinterface")
+    public String rentalsStart(Model model, @RequestParam String socialNumber) {
         model.addAttribute("rentedMovies", rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber));
-
+        model.addAttribute("customer",customerRep.findById(socialNumber).get());
         return "rentals/rentalinterface";
     }
 
 
-    @PostMapping("rentals/rentalinterface")
-    public String rentalPost(@RequestParam Long productNumber, String socialNumber, Movie movie) {
+    @PostMapping("/rentalinterface")
+    public void rentalPost(@RequestParam Long productNumber, String socialNumber) {
+        System.out.println(productNumber);
+       Movie movie = movieRep.findById(productNumber).get();
+
         if (movie.isAvaliable()) {
             System.out.println("is movies här?");
             rentedMovieRep.save(new RentedMovie(new RentedMovieKey(productNumber, socialNumber)));
-            movie = movieRep.findById(productNumber).get();
             movie.setAvaliable(false);
         } else {
             System.out.println("FEEEEEEEEEEEEEEL");
         }
-        return "redirect:/rentals/rentalinterface";
+
     }
 }
