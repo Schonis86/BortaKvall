@@ -17,11 +17,11 @@ public class RentedMovieKey implements Serializable {
 
     }
 
-    public Long getProduktNumber() {
+    public Long getProductNumber() {
         return productNumber;
     }
 
-    public void setProduktNumber(Long productNumber) {
+    public void setProductNumber(Long productNumber) {
         this.productNumber = productNumber;
     }
 

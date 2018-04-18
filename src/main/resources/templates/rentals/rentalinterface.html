@@ -47,10 +47,10 @@
 </div>
 
 <div>
-    <form th:action="@{/rentals/rentalinterface}" method="post">
+    <form action="#" method="post">
         <label>ArtNr</label>
         <input type="text" name="productNumber">
-        <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
+        <!--<input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">-->
         <button type="submit">Submit</button>
     </form>
 </div>
@@ -67,12 +67,13 @@
         <th></th>
     </tr>
 
-    <th:block th:each="movie : ${rentedMovies}">
+    <th:block  th:each="movie : ${rentedMovies}">
         <tr id="studentTable" >
-            <td th:text="${movie.productNumber}">dummy</td>
+            <td th:text="${movie.rentedMovieKey.productNumber}">dummy</td>
 
-            <td th:text="${movie.fDate}">dummy</td>
-            <td th:text="${movie.Tdate}">dummy</td>
+            <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
+            <td th:text="${movie.fromDate}">dummy</td>
+            <td th:text="${movie.toDate}">dummy</td>
             <td></td>
 
             <!-- <td>
