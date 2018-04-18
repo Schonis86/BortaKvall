@@ -16,22 +16,21 @@ public class CheckUserController {
 
 
     @GetMapping("/home")
-    public String goHome(){
+    public String goHome() {
         return "/home/home";
     }
 
     @PostMapping("/home")
-    public String checkUser(@RequestParam String socialNumber, Model model,@ModelAttribute Customer customer) {
+    public String checkUser(@RequestParam String socialNumber, Model model, @ModelAttribute Customer customer) {
 
         customer = checkCustomerRepository.findById(socialNumber).get();
         System.out.println(customer.getSocialNumber());
 
-        if (customer != null){
-            model.addAttribute("customer",customer);
+        if (customer != null) {
+            model.addAttribute("customer", customer);
 
             return "/rentals/rentalinterface";
-        }
-        else {
+        } else {
             return "/home/home";
         }
 

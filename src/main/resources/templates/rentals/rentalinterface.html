@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,8 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="#">Home</a>
-                <a class="nav-item nav-link active" href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/movie/movies">Movies <span
+                        class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
                 <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
@@ -45,39 +46,46 @@
 
 </div>
 
+<div>
+    <form  method="post">
+        <label>ArtNr</label>
+        <input type="text" name="productNumber">
+        <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
+        <button type="submit">Submit</button>
+    </form>
+</div>
 
-<!--
-<h3 class="d-flex justify-content-center">Movies</h3>
+
+
+<h3 class="d-flex justify-content-center">Rented Movies</h3>
 <table class="table">
     <tr>
         <th>Product Number</th>
         <th>Name</th>
-        <th>Category</th>
-        <th>Format</th>
-        <th>Release Date</th>
+        <th>From Date</th>
+        <th>To Date</th>
         <th></th>
     </tr>
 
-    <th:block th:each="movie : ${movies}">
-        <tr id="studentTable" th:object="${movie}">
-            <td th:text="*{produktNumber}">dummy</td>
-            <td th:text="*{name}">dummy</td>
-            <td th:text="*{category}">dummy</td>
-            <td th:text="*{format}">dummy</td>
-            <td th:text="*{releaseDate}">dummy</td>
+    <th:block th:each="movie : ${rentedMovies}">
+        <tr id="studentTable" >
+            <td th:text="${movie.productNumber}">dummy</td>
+            <td th:text="${movie.name}">dummy</td>
+            <td th:text="${movie.fDate}">dummy</td>
+            <td th:text="${movie.Tdate}">dummy</td>
             <td></td>
 
-            &lt;!&ndash; <td>
+            <!-- <td>
                  <form action="#" th:action="@{student_profile/personNumber}" method="post">
                      <input type="hidden" th:value="*{personNumber}" name="personNumber">
                      <button class="btn btn-outline-dark" type="submit">Show</button>
                  </form>
-             </td>&ndash;&gt;
+             </td>-->
         </tr>
     </th:block>
 </table>
 
--->
+
 
 <footer>
 

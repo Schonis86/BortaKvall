@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -11,7 +10,7 @@ public class Movie {
 
 
 
-    private Long produktNumber;
+    private Long productNumber;
     private String name;
     private String description;
     private String releaseDate;
@@ -36,12 +35,12 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getProduktNumber() {
-        return produktNumber;
+    public Long getProductNumber() {
+        return productNumber;
     }
 
-    public void setProduktNumber(Long produktNumber) {
-        this.produktNumber = produktNumber;
+    public void setProductNumber(Long productNumber) {
+        this.productNumber = productNumber;
     }
 
     public String getName() {
