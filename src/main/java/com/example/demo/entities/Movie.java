@@ -16,6 +16,7 @@ public class Movie {
     private String releaseDate;
     private String category;
     private String format;
+    private String imgLink;
     private boolean avaliable;
     private List<Customer> customers;
 
@@ -23,12 +24,13 @@ public class Movie {
 
     }
 
-    public Movie(String name, String description, String releaseDate, String category, String format, boolean avaliable) {
+    public Movie(String name, String description, String releaseDate, String category, String format,String imgLink, boolean avaliable) {
         this.name = name;
         this.description = description;
         this.releaseDate = releaseDate;
         this.category = category;
         this.format = format;
+        this.imgLink = imgLink;
         this.avaliable = avaliable;
     }
 
@@ -81,6 +83,14 @@ public class Movie {
 
     public void setFormat(String format) {
         this.format = format;
+    }
+
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
     }
 
     public boolean isAvaliable() {

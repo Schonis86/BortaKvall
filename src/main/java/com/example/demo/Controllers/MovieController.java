@@ -26,8 +26,8 @@ public class MovieController {
     }
 
     @PostMapping("/movies")
-    public String saveMovie(@RequestParam boolean avaliable, String category, String description, String format, String name, String releaseDate ){
-        movieR.save(new Movie(name, description, releaseDate, category, format, avaliable));
+    public String saveMovie(@RequestParam boolean avaliable, String category, String description, String format, String imgLink, String name, String releaseDate ){
+        movieR.save(new Movie(name, description, releaseDate, category, format, imgLink, avaliable));
         return"redirect:/movie/movies";
     }
 

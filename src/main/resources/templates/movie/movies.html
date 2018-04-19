@@ -20,10 +20,11 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/home">Home</a>
-                <a class="nav-item nav-link active" href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/movie/movies">Movies <span
+                        class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
+                <a class="nav-item nav-link btn btn-primary" type="button" data-toggle="modal"
                    data-target=".bd-example-modal-lg">Add Movie</a>
             </div>
         </div>
@@ -51,7 +52,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieRD">Release Date</label>
-                            <input name="releaseDate" type="text" class="form-control" id="movieRD" placeholder="Release Date">
+                            <input name="releaseDate" type="text" class="form-control" id="movieRD"
+                                   placeholder="Release Date">
                         </div>
 
                     </div>
@@ -59,7 +61,8 @@
 
                         <div class="form-group col-md-4">
                             <label for="movieCategory">Category</label>
-                            <input name="category" type="text" class="form-control" id="movieCategory" placeholder="Category">
+                            <input name="category" type="text" class="form-control" id="movieCategory"
+                                   placeholder="Category">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Format</label>
@@ -70,14 +73,15 @@
 
 
                     <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="movieDescription">Description</label>
-                        <textarea name="description" cols="30" rows="10" type="text" class="form-control" id="movieDescription" ></textarea>
-                    </div>
+                        <div class="form-group col-md-4">
+                            <label for="movieDescription">Description</label>
+                            <textarea name="description" cols="30" rows="10" type="text" class="form-control"
+                                      id="movieDescription"></textarea>
+                        </div>
                         <input name="avaliable" type="hidden" th:value="true">
                     </div>
 
-                    <button class="btn btn-outline-dark" type="submit" >Save Movie</button>
+                    <button class="btn btn-outline-dark" type="submit">Save Movie</button>
 
                 </form>
             </div>
@@ -104,7 +108,10 @@
             <td th:text="*{category}">dummy</td>
             <td th:text="*{format}">dummy</td>
             <td th:text="*{releaseDate}">dummy</td>
-            <td></td>
+            <td>
+                <button class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
+                        th:data-target="'#showInfo' + ${movie.productNumber}">INFO</button>
+            </td>
 
             <!-- <td>
                  <form action="#" th:action="@{student_profile/personNumber}" method="post">
@@ -113,6 +120,21 @@
                  </form>
              </td>-->
         </tr>
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+             aria-hidden="true" th:id="'showInfo' + ${movie.productNumber}">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModal">Movie info</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div th:text="*{movie.description}" ></div>
+                        <img style="width:182px;height:268px;" th:src="${movie.imgLink}" >
+                </div>
+            </div>
+        </div>
     </th:block>
 </table>
 
