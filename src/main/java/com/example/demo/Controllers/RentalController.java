@@ -51,12 +51,13 @@ public class RentalController {
     @PostMapping("/rentalinterface")
     public String rentalPost(@RequestParam Long productNumber, @RequestParam String socialNumber) {
         System.out.println(productNumber);
-       Movie movie = movieRep.findById(productNumber).get();
+       Movie movie = movieRep.getOne(productNumber);
 
         if (movie.isAvaliable()) {
             System.out.println("is movies här?");
             rentedMovieRep.save(new RentedMovie(new RentedMovieKey(productNumber, socialNumber)));
             movie.setAvaliable(false);
+            movieRep.save(movie);
 
         } else {
             System.out.println("FEEEEEEEEEEEEEEL");

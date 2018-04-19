@@ -19,7 +19,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home</a>
+                <a class="nav-item nav-link" href="/home">Home</a>
                 <a class="nav-item nav-link active" href="/movie/movies">Movies <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
@@ -137,7 +137,6 @@
         <th>Product Number</th>
         <th>Name</th>
         <th>From Date</th>
-        <th>To Date</th>
         <th></th>
     </tr>
 
@@ -147,7 +146,6 @@
 
             <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
             <td th:text="${movie.fromDate}">dummy</td>
-            <td th:text="${movie.toDate}">dummy</td>
             <td></td>
 
             <!-- <td>
