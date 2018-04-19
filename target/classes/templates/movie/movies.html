@@ -6,6 +6,7 @@
     <title class="headerThing">Borta Kväll AB</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
 </head>
@@ -24,14 +25,16 @@
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
                 <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
-                   data-target=".bd-example-modal-lg">Add Movie</a>
+                   data-target="#modal1">Add Movie</a>
+                <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
+                   data-target="#modal2">Delete Movie</a>
             </div>
         </div>
     </nav>
 </header>
 
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -77,13 +80,41 @@
                         <input name="avaliable" type="hidden" th:value="true">
                     </div>
 
-                    <button class="btn btn-outline-dark" type="submit" >Save Movie</button>
+                    <button type="button" class="btn btn-success">Save Movie</button>
 
                 </form>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle2">Delete Movie</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div>
+                <form method="post">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="movieName">Name</label>
+                            <input name="name" type="text" class="form-control" id="movieID" placeholder="Movie id">
+                        </div>
+                        <button type="button" class="btn btn-success">Save Movie</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <h3 class="d-flex justify-content-center">Movies</h3>
@@ -120,6 +151,9 @@
 <footer>
 
 </footer>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.js}"></script>
 </body>
