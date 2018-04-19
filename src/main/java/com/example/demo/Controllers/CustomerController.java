@@ -22,26 +22,27 @@ public class CustomerController {
     private CustomerRepository customerR;
 
     @GetMapping("/customers")
-    public String getAllCustomers(Model model){
+    public String getAllCustomers(Model model) {
         model.addAttribute("customers", customerR.findAll());
         return "customer/customers";
     }
 
     @GetMapping("/addcustomer")
-    public String openSaveCustomer(CustomerForm customerForm){
+    public String openSaveCustomer(CustomerForm customerForm) {
         return "customer/addcustomer";
     }
 
 
-
     @PostMapping("/addcustomer")
-    public String saveCustomer(@Valid CustomerForm customerForm, BindingResult bindingResult, @RequestParam String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email){
+    public String saveCustomer(@Valid CustomerForm customerForm, BindingResult bindingResult, @RequestParam String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email) {
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "customer/addcustomer";
         }
         customerR.save(new Customer(socialNumber, fName, lName, address, zipCode, city, country, phone, email));
         return "redirect:/customer/customers";
     }
+
+
 
 }

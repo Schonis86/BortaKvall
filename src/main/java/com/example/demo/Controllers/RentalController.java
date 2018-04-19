@@ -1,5 +1,6 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.entities.Customer;
 import com.example.demo.entities.Movie;
 import com.example.demo.entities.RentedMovie;
 import com.example.demo.entities.RentedMovieKey;
@@ -47,7 +48,6 @@ public class RentalController {
         return "rentals/rentalinterface";
     }
 
-
     @PostMapping("/rentalinterface")
     public String rentalPost(@RequestParam Long productNumber, @RequestParam String socialNumber) {
         System.out.println(productNumber);
@@ -63,4 +63,38 @@ public class RentalController {
         }
         return "redirect:/rentals/rentalinterface?socialNumber="+socialNumber;
     }
+
+    @PostMapping("/rentals/changecustomer")
+    public String changeCustomer(@RequestParam String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email) {
+        System.out.println("vafaaaaaaan");
+        Customer customer = customerRep.getOne(socialNumber);
+        if (fName != "") {
+            customer.setfName(fName);
+        }
+        if (lName != "") {
+            customer.setlName(lName);
+        }
+        if (address != "") {
+            customer.setAddress(address);
+        }
+        if (zipCode != ""){
+            customer.setZipCode(zipCode);
+        }
+        if (city != ""){
+            customer.setCity(city);
+        }
+        if (country != ""){
+            customer.setCountry(country);
+        }
+        if (phone != ""){
+            customer.setPhone(phone);
+        }
+        if (email != ""){
+            customer.setEmail(email);
+        }
+        customerRep.save(customer);
+        return "redirect:/rentals/rentalinterface?socialNumber="+socialNumber;
+    }
+
+
 }
