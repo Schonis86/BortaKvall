@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title class="headerThing">Borta Kväll AB</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <a class="navbar-brand" href="#"><img th:src="@{/images/ec_bild.png}" alt="ec_logo"  height="50" width="75"/></a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/home">Home</a>
+                <a class="nav-item nav-link " href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/customer/customers">Customer</a>
+
+                <a class="nav-item nav-link"  href="/customer/addcustomer"
+                   >Add Customer</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<h3 class="d-flex justify-content-center">Customers</h3>
+<table class="table">
+    <tr>
+        <th>Social Security Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Address</th>
+        <th>Zip Code</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
+
+    <th:block th:each="customer : ${customers}">
+        <tr id="studentTable" th:object="${customer}">
+            <td th:text="*{socialNumber}">dummy</td>
+            <td th:text="*{fName}">dummy</td>
+            <td th:text="*{lName}">dummy</td>
+            <td th:text="*{address}">dummy</td>
+            <td th:text="*{zipCode}">dummy</td>
+            <td th:text="*{city}">dummy</td>
+            <td th:text="*{country}">dummy</td>
+            <td th:text="*{phone}">dummy</td>
+            <td th:text="*{email}">dummy</td>
+            <td></td>
+
+            <!-- <td>
+                 <form action="#" th:action="@{student_profile/personNumber}" method="post">
+                     <input type="hidden" th:value="*{personNumber}" name="personNumber">
+                     <button class="btn btn-outline-dark" type="submit">Show</button>
+                 </form>
+             </td>-->
+        </tr>
+    </th:block>
+</table>
+
+
+<footer>
+
+</footer>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title class="headerThing">Borta Kväll AB</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- <a class="navbar-brand" href="#"><img th:src="@{/images/ec_bild.png}" alt="ec_logo"  height="50" width="75"/></a>-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/home">Home</a>
+                <a class="nav-item nav-link " href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link active" href="/customer/customers">Customer</a>
+
+                <a class="nav-item nav-link" href="/customer/addcustomer"
+                >Add Customer</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+    <form th:object="${checkCustomerForm}" method="post">
+        <label for="customerSSN">Social Security Number</label>
+        <input th:value="*{socialNumber}" name="socialNumber" type="text" class="form-control" id="customerSSN"
+               placeholder="000000-0000">
+        <label th:if="${#fields.hasErrors('socialNumber')}" th:errors="*{socialNumber}"></label>
+
+        <button class="nav-item nav-link btn btn-primary" data-toggle="modal"
+                data-target=".bd-example-modal-lg" type="submit">Submit
+        </button>
+    </form>
+
+
+<footer>
+
+</footer>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.js}"></script>
+</body>
+
+</html>

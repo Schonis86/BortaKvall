@@ -4,6 +4,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -12,17 +13,15 @@ public class RentedMovie {
 
     @EmbeddedId
     private RentedMovieKey rentedMovieKey;
-    private Date fromDate;
-    private Date toDate;
+    private LocalDate toDate;
 
     public RentedMovie(){
 
     }
 
-    public RentedMovie(RentedMovieKey rentedMovieKey, Date fromDate, Date toDate) {
+    public RentedMovie(RentedMovieKey rentedMovieKey) {
         this.rentedMovieKey = rentedMovieKey;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+        this.toDate = null;
     }
 
     public RentedMovieKey getRentedMovieKey() {
@@ -33,19 +32,11 @@ public class RentedMovie {
         this.rentedMovieKey = rentedMovieKey;
     }
 
-    public Date getFromDate() {
-        return fromDate;
-    }
-
-    public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
-    }
-
-    public Date getToDate() {
+    public LocalDate getToDate() {
         return toDate;
     }
 
-    public void setToDate(Date toDate) {
+    public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
     }
 }
