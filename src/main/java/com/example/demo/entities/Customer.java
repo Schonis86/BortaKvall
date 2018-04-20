@@ -1,5 +1,11 @@
 package com.example.demo.entities;
 
+import com.example.demo.Controllers.RentalController;
+import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.repositories.MovieRepository;
+import com.example.demo.repositories.RentedMovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -7,7 +13,6 @@ import java.util.List;
 @Entity
 @Table(name = "Customer")
 public class Customer {
-
 
 
     private String socialNumber;
@@ -59,6 +64,17 @@ public class Customer {
         this.email = email;
         this.movies = movies;
     }
+
+    public boolean hasRentedMovies(RentedMovieRepository rentRepo) {
+
+        List<RentedMovie> addMovies = rentRepo.findByRentedMovieKeySocialNumber(getSocialNumber());
+
+        return addMovies.stream()
+                .anyMatch(m -> m.getToDate() == null);
+
+    }
+
+
     @Id
     public String getSocialNumber() {
         return socialNumber;

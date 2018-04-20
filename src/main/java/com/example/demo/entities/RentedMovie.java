@@ -13,7 +13,6 @@ public class RentedMovie {
 
     @EmbeddedId
     private RentedMovieKey rentedMovieKey;
-    private LocalDate fromDate;
     private LocalDate toDate;
 
     public RentedMovie(){
@@ -22,7 +21,6 @@ public class RentedMovie {
 
     public RentedMovie(RentedMovieKey rentedMovieKey) {
         this.rentedMovieKey = rentedMovieKey;
-        this.fromDate = LocalDate.now();
         this.toDate = null;
     }
 
@@ -32,14 +30,6 @@ public class RentedMovie {
 
     public void setRentedMovieKey(RentedMovieKey rentedMovieKey) {
         this.rentedMovieKey = rentedMovieKey;
-    }
-
-    public LocalDate getFromDate() {
-        return fromDate;
-    }
-
-    public void setFromDate(LocalDate fromDate) {
-        this.fromDate = fromDate;
     }
 
     public LocalDate getToDate() {

@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface RentedMovieRepository extends JpaRepository<RentedMovie,RentedMovieKey> {
    List<RentedMovie> findByRentedMovieKeySocialNumber(String socialNumber);
+   List<RentedMovie> findByRentedMovieKeyProductNumber(Long productNumber);
 }

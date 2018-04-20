@@ -130,23 +130,57 @@
 </div>
 
 
-
+<div th:if="${customer.hasRentedMovies(@rentedMovieRepository)}">
 <h3 class="d-flex justify-content-center">Rented Movies</h3>
+<table  class="table">
+    <tr>
+        <th>Product Number</th>
+        <th>Name</th>
+        <th>From Date</th>
+        <th>Return movie</th>
+    </tr>
+
+    <th:block  th:each="movie : ${rentedMovies}" th:if="${movie.toDate} == null">
+        <tr id="studentTable" >
+            <td th:text="${movie.rentedMovieKey.productNumber}">dummy</td>
+
+            <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
+            <td th:text="${movie.rentedMovieKey.formatDate()}">dummy</td>
+            <td><form th:action="@{rentals/returnRentedMovie}" method="post">
+                <input type="hidden" name="productNumber" th:value="${movie.rentedMovieKey.productNumber}">
+                <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
+                <input type="hidden" name="fromDate" th:value="${movie.rentedMovieKey.fromDate}">
+                <button class="nav-item nav-link btn btn-outline-dark" type="submit">Return</button></form></td>
+
+            <!-- <td>
+                 <form action="#" th:action="@{student_profile/personNumber}" method="post">
+                     <input type="hidden" th:value="*{personNumber}" name="personNumber">
+                     <button class="btn btn-outline-dark" type="submit">Show</button>
+                 </form>
+             </td>-->
+        </tr>
+    </th:block>
+</table>
+
+</div>
+<h3 class="d-flex justify-content-center">History</h3>
 <table class="table">
     <tr>
         <th>Product Number</th>
         <th>Name</th>
         <th>From Date</th>
-        <th></th>
+        <th>Returned</th>
     </tr>
 
-    <th:block  th:each="movie : ${rentedMovies}">
-        <tr id="studentTable" >
+    <th:block  th:each="movie : ${rentedMovies}" th:if="${movie.toDate} != null">
+        <tr >
             <td th:text="${movie.rentedMovieKey.productNumber}">dummy</td>
 
             <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
-            <td th:text="${movie.fromDate}">dummy</td>
-            <td></td>
+            <td th:text="${movie.rentedMovieKey.formatDate()}">dummy</td>
+            <td th:text="${movie.toDate}">dummy</td>
+
+
 
             <!-- <td>
                  <form action="#" th:action="@{student_profile/personNumber}" method="post">

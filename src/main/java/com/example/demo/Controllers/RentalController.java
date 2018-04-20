@@ -8,6 +8,7 @@ import com.example.demo.repositories.CustomerRepository;
 import com.example.demo.repositories.MovieRepository;
 import com.example.demo.repositories.RentedMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Configuration
 @Controller
 @RequestMapping("/rentals")
 public class RentalController {
@@ -42,9 +45,9 @@ public class RentalController {
                 .collect(Collectors.toList());
 
         model.addAttribute("rentedMovies", rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber));
-        model.addAttribute("customer",customerRep.findById(socialNumber).get());
+        model.addAttribute("customer", customerRep.findById(socialNumber).get());
         model.addAttribute("movies", movieRep.findAllById(prodNumbers));
-       // model.addAttribute("movies", movieRep.findAllById(rentedMovieRep.find));
+        // model.addAttribute("movies", movieRep.findAllById(rentedMovieRep.find));
         return "rentals/rentalinterface";
     }
 
@@ -55,7 +58,7 @@ public class RentalController {
 
         if (movie.isAvaliable()) {
             System.out.println("is movies här?");
-            rentedMovieRep.save(new RentedMovie(new RentedMovieKey(productNumber, socialNumber)));
+            rentedMovieRep.save(new RentedMovie(new RentedMovieKey(productNumber, socialNumber, LocalDateTime.now())));
             movie.setAvaliable(false);
             movieRep.save(movie);
 
@@ -64,6 +67,24 @@ public class RentalController {
         }
         return "redirect:/rentals/rentalinterface?socialNumber="+socialNumber;
     }
+
+    @PostMapping("/rentals/returnRentedMovie")
+    public String returnMovie(@RequestParam Long productNumber, @RequestParam String socialNumber, @RequestParam String fromDate){
+        RentedMovie rMovie = rentedMovieRep.getOne(new RentedMovieKey(productNumber, socialNumber, LocalDateTime.parse(fromDate)));
+        Movie movie = movieRep.getOne(productNumber);
+
+        if(rMovie != null) {
+            rMovie.setToDate(LocalDate.now());
+            rentedMovieRep.save(rMovie);
+            movie.setAvaliable(true);
+            movieRep.save(movie);
+        }
+        else {
+            System.out.println("Nånting annat feeeeeeel");
+        }
+        return "redirect:/rentals/rentalinterface?socialNumber="+socialNumber;
+    }
+
 
     @PostMapping("/rentals/changecustomer")
     public String changeCustomer(@RequestParam String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email) {

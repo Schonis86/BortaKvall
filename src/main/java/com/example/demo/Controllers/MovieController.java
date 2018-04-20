@@ -31,6 +31,16 @@ public class MovieController {
         return"redirect:/movie/movies";
     }
 
+    @PostMapping("/deletemovie")
+    public String deleteMovie(@RequestParam Long productNumber){
+        Movie movie = movieR.getOne(productNumber);
+        if (movie.isAvaliable()){
+            movieR.deleteById(productNumber);
+        }
+
+        return "redirect:/movie/movies";
+    }
+
 
 
 
