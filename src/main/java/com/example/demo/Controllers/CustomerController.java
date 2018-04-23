@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/customer")
@@ -43,6 +44,12 @@ public class CustomerController {
         return "redirect:/customer/customers";
     }
 
+    @GetMapping("/lastNameSearch")
+    public String titleSearch(Model model, @RequestParam String lName) {
+        List<Customer> searchResult = customerR.findAllByLNameContainingIgnoreCase(lName);
+        model.addAttribute("customers", searchResult);
+        return "/customer/customers";
+    }
 
 
 }
