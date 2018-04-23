@@ -2,7 +2,9 @@ package com.example.demo.Controllers;
 
 
 import com.example.demo.entities.Movie;
+import com.example.demo.entities.RentedMovie;
 import com.example.demo.repositories.MovieRepository;
+import com.example.demo.repositories.RentedMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +13,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/movie")
 public class MovieController {
 
     @Autowired
     private MovieRepository movieR;
+    @Autowired
+    private RentedMovieRepository rentedMovieR;
 
 
     @GetMapping("/movies")
@@ -39,6 +47,16 @@ public class MovieController {
         }
 
         return "redirect:/movie/movies";
+    }
+    @GetMapping("/overduemovies")
+    public String overduedMovies(Model model){
+
+        List<RentedMovie> overduedMovies = rentedMovieR.findByToDate(null).stream()
+                .filter(m -> m.getRentedMovieKey().getFromDate().isBefore(LocalDateTime.now().minusMinutes(2)))
+                .collect(Collectors.toList());
+
+        model.addAttribute("overduemovies", overduedMovies);
+        return "/movie/overduemovies";
     }
 
 
