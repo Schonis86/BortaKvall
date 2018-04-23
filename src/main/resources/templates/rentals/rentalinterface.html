@@ -140,16 +140,17 @@
         <th>Return movie</th>
     </tr>
 
-    <th:block  th:each="movie : ${rentedMovies}" th:if="${movie.toDate} == null">
+    <th:block  th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} == null">
         <tr id="studentTable" >
-            <td th:text="${movie.rentedMovieKey.productNumber}">dummy</td>
+            <td th:text="${rentedMovie.rentedMovieKey.productNumber}">dummy</td>
 
-            <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
-            <td th:text="${movie.rentedMovieKey.formatDate()}">dummy</td>
+            <!--<td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>-->
+           <td th:text="${rentedMovie.movie.name}">dummy</td>
+            <td th:text="${rentedMovie.rentedMovieKey.formatDate()}">dummy</td>
             <td><form th:action="@{rentals/returnRentedMovie}" method="post">
-                <input type="hidden" name="productNumber" th:value="${movie.rentedMovieKey.productNumber}">
+                <input type="hidden" name="productNumber" th:value="${rentedMovie.movie.productNumber}">
                 <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
-                <input type="hidden" name="fromDate" th:value="${movie.rentedMovieKey.fromDate}">
+                <input type="hidden" name="fromDate" th:value="${rentedMovie.rentedMovieKey.fromDate}">
                 <button class="nav-item nav-link btn btn-outline-dark" type="submit">Return</button></form></td>
 
             <!-- <td>
@@ -172,13 +173,13 @@
         <th>Returned</th>
     </tr>
 
-    <th:block  th:each="movie : ${rentedMovies}" th:if="${movie.toDate} != null">
+    <th:block  th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} != null">
         <tr >
-            <td th:text="${movie.rentedMovieKey.productNumber}">dummy</td>
+            <td th:text="${rentedMovie.movie.productNumber}">dummy</td>
 
-            <td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>
-            <td th:text="${movie.rentedMovieKey.formatDate()}">dummy</td>
-            <td th:text="${movie.toDate}">dummy</td>
+            <td th:text="${rentedMovie.movie.name}">dummy</td>
+            <td th:text="${rentedMovie.rentedMovieKey.formatDate()}">dummy</td>
+            <td th:text="${rentedMovie.toDate}">dummy</td>
 
 
 

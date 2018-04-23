@@ -18,7 +18,7 @@ public class Movie {
     private String format;
     private String imgLink;
     private boolean avaliable;
-    private List<Customer> customers;
+    private List<RentedMovie> rentedMovies;
 
     public Movie(){
 
@@ -101,12 +101,12 @@ public class Movie {
         this.avaliable = avaliable;
     }
 
-    @ManyToMany()
-    public List<Customer> getCustomers() {
-        return customers;
+    @OneToMany(mappedBy = "movie")
+    public List<RentedMovie> getRentedMovies() {
+        return rentedMovies;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setRentedMovies(List<RentedMovie> rentedMovies) {
+        this.rentedMovies = rentedMovies;
     }
 }

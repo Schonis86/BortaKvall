@@ -39,15 +39,14 @@ public class RentalController {
     public String rentalsStart(Model model, @RequestParam String socialNumber) {
         System.out.println("nånting");
 
-        List<RentedMovie> movies = rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber);
-        List<Long> prodNumbers = movies.stream()
-                .map(m -> m.getRentedMovieKey().getProductNumber())
-                .collect(Collectors.toList());
 
-        model.addAttribute("rentedMovies", rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber));
-        model.addAttribute("customer", customerRep.findById(socialNumber).get());
-        model.addAttribute("movies", movieRep.findAllById(prodNumbers));
-        // model.addAttribute("movies", movieRep.findAllById(rentedMovieRep.find));
+        List<RentedMovie> rentedMovies = rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber);
+        rentedMovies.forEach(rm -> rm.setCustomer(customerRep.getOne(rm.getRentedMovieKey().getSocialNumber())));
+        rentedMovies.forEach(rm -> rm.setMovie(movieRep.getOne(rm.getRentedMovieKey().getProductNumber())));
+
+        model.addAttribute("rentedMovies", rentedMovies);
+        model.addAttribute("customer", customerRep.getOne(socialNumber));
+
         return "rentals/rentalinterface";
     }
 
