@@ -1,9 +1,12 @@
 package com.example.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import com.example.demo.Controllers.RentalController;
+import com.example.demo.repositories.CustomerRepository;
+import com.example.demo.repositories.MovieRepository;
+import com.example.demo.repositories.RentedMovieRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -12,30 +15,30 @@ import java.util.List;
 public class Customer {
 
 
-    @Id
     private String socialNumber;
-    @NotNull
+
     private String fName;
-    @NotNull
+
     private String lName;
-    @NotNull
+
     private String address;
-    @NotNull
+
     private String zipCode;
-    @NotNull
+
     private String city;
-    @NotNull
+
     private String country;
-    @NotNull
+
     private String phone;
-    @NotNull
+
     private String email;
 
-//    private List<Movie> movies;
+    private List<Movie> movies;
 
     public Customer(){
 
     }
+
 
     public Customer(String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email) {
         this.socialNumber = socialNumber;
@@ -49,7 +52,30 @@ public class Customer {
         this.email = email;
     }
 
+    public Customer(String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email, List<Movie> movies) {
+        this.socialNumber = socialNumber;
+        this.fName = fName;
+        this.lName = lName;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
+        this.phone = phone;
+        this.email = email;
+        this.movies = movies;
+    }
 
+    public boolean hasRentedMovies(RentedMovieRepository rentRepo) {
+
+        List<RentedMovie> addMovies = rentRepo.findByRentedMovieKeySocialNumber(getSocialNumber());
+
+        return addMovies.stream()
+                .anyMatch(m -> m.getToDate() == null);
+
+    }
+
+
+    @Id
     public String getSocialNumber() {
         return socialNumber;
     }
@@ -122,12 +148,12 @@ public class Customer {
         this.email = email;
     }
 
-/*    @ManyToMany(mappedBy = "customers")
+    @ManyToMany(mappedBy = "customers")
     public List<Movie> getMovies() {
         return movies;
     }
 
     public void setMovies(List<Movie> movies) {
         this.movies = movies;
-    }*/
+    }
 }

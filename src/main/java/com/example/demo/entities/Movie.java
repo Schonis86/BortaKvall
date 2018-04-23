@@ -2,7 +2,6 @@ package com.example.demo.entities;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,36 +9,40 @@ import java.util.List;
 public class Movie {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long produktNumber;
-    @NotNull
+
+    private Long productNumber;
     private String name;
     private String description;
     private String releaseDate;
-    @NotNull
     private String category;
-    @NotNull
     private String format;
-    @NotNull
+    private String imgLink;
     private boolean avaliable;
-//    private List<Customer> customers;
+    private List<Customer> customers;
 
-    public Movie(String name, String description, String releaseDate, String category, String format, boolean avaliable) {
+    public Movie(){
+
+    }
+
+    public Movie(String name, String description, String releaseDate, String category, String format,String imgLink, boolean avaliable) {
         this.name = name;
         this.description = description;
         this.releaseDate = releaseDate;
         this.category = category;
         this.format = format;
+        this.imgLink = imgLink;
         this.avaliable = avaliable;
     }
 
-    public Long getProduktNumber() {
-        return produktNumber;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getProductNumber() {
+        return productNumber;
     }
 
-    public void setProduktNumber(Long produktNumber) {
-        this.produktNumber = produktNumber;
+    public void setProductNumber(Long productNumber) {
+        this.productNumber = productNumber;
     }
 
     public String getName() {
@@ -82,6 +85,14 @@ public class Movie {
         this.format = format;
     }
 
+    public String getImgLink() {
+        return imgLink;
+    }
+
+    public void setImgLink(String imgLink) {
+        this.imgLink = imgLink;
+    }
+
     public boolean isAvaliable() {
         return avaliable;
     }
@@ -90,11 +101,12 @@ public class Movie {
         this.avaliable = avaliable;
     }
 
- /*   public List<Customer> getCustomers() {
+    @ManyToMany()
+    public List<Customer> getCustomers() {
         return customers;
     }
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
-    }*/
+    }
 }
