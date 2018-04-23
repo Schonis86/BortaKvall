@@ -27,6 +27,10 @@
                    >Add Customer</a>
             </div>
         </div>
+        <form method="get" th:action="@{/customer/lastNameSearch}" class="form-inline my-2 my-lg-0">
+            <input name="lName" class="form-control mr-sm-2" type="text" placeholder="Search By Last Name" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </nav>
 </header>
 

@@ -24,13 +24,19 @@
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link btn btn-primary" type="button" data-toggle="modal"
+                <a class="nav-item nav-link"  data-toggle="modal"
                    data-target=".bd-example-modal-lg">Add Movie</a>
 
-                <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
+                <a class="nav-item nav-link"  data-toggle="modal"
                    data-target="#modal2">Delete Movie</a>
+
+
             </div>
         </div>
+        <form method="get" th:action="@{/movie/titleSearch}" class="form-inline my-2 my-lg-0">
+            <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search By Title" aria-label="Search">
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </nav>
 </header>
 
@@ -50,8 +56,8 @@
                 <form method="post">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="movieName">Name</label>
-                            <input name="name" type="text" class="form-control" id="movieName" placeholder="Name">
+                            <label for="movieName">Title</label>
+                            <input name="name" type="text" class="form-control" id="movieName" placeholder="Title">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieRD">Release Date</label>

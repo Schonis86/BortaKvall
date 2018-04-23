@@ -10,4 +10,5 @@ import java.util.List;
 public interface CustomerRepository extends JpaRepository<Customer, String> {
 
     List<Customer> findBySocialNumber(String socialNumber);
+    List<Customer> findAllByLNameContainingIgnoreCase(String lName);
 }

@@ -8,10 +8,7 @@ import com.example.demo.repositories.RentedMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,34 +19,36 @@ import java.util.stream.Collectors;
 public class MovieController {
 
     @Autowired
-    private MovieRepository movieR;
+    private MovieRepository movieRep;
     @Autowired
     private RentedMovieRepository rentedMovieR;
 
 
     @GetMapping("/movies")
-    public String getAllMovies(Model model){
-        model.addAttribute("movies", movieR.findAll());
+    public String getAllMovies(Model model) {
+
+        model.addAttribute("movies",movieRep.findAll());
         return "movie/movies";
     }
 
     @PostMapping("/movies")
-    public String saveMovie(@RequestParam boolean avaliable, String category, String description, String format, String imgLink, String name, String releaseDate ){
-        movieR.save(new Movie(name, description, releaseDate, category, format, imgLink, avaliable));
-        return"redirect:/movie/movies";
+    public String saveMovie(@RequestParam boolean avaliable, String category, String description, String format, String imgLink, String name, String releaseDate) {
+        movieRep.save(new Movie(name, description, releaseDate, category, format, imgLink, avaliable));
+        return "redirect:/movie/movies";
     }
 
     @PostMapping("/deletemovie")
-    public String deleteMovie(@RequestParam Long productNumber){
-        Movie movie = movieR.getOne(productNumber);
-        if (movie.isAvaliable()){
-            movieR.deleteById(productNumber);
+    public String deleteMovie(@RequestParam Long productNumber) {
+        Movie movie = movieRep.getOne(productNumber);
+        if (movie.isAvaliable()) {
+            movieRep.deleteById(productNumber);
         }
 
         return "redirect:/movie/movies";
     }
+
     @GetMapping("/overduemovies")
-    public String overduedMovies(Model model){
+    public String overduedMovies(Model model) {
 
         List<RentedMovie> overduedMovies = rentedMovieR.findByToDate(null).stream()
                 .filter(m -> m.getRentedMovieKey().getFromDate().isBefore(LocalDateTime.now().minusMinutes(2)))
@@ -60,15 +59,12 @@ public class MovieController {
     }
 
 
-
-
-
-
-
-
-
-
-
+    @GetMapping("/titleSearch")
+    public String titleSearch(Model model, @RequestParam String name) {
+        List<Movie> searchResult = movieRep.findAllByNameContainingIgnoreCase(name);
+        model.addAttribute("movies", searchResult);
+        return "/movie/movies";
+    }
 
 
 }

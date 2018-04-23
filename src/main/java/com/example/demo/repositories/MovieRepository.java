@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
+    List<Movie> findAllByNameContainingIgnoreCase(String name);
 }
