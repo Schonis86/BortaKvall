@@ -126,6 +126,8 @@
         <th>Category</th>
         <th>Format</th>
         <th>Release Date</th>
+        <th>Available</th>
+
         <th></th>
     </tr>
 
@@ -136,6 +138,10 @@
             <td th:text="*{category}">dummy</td>
             <td th:text="*{format}">dummy</td>
             <td th:text="*{releaseDate}">dummy</td>
+            <td><img th:if="*{avaliable}" th:src="@{/img/green.png}" alt="" >
+                <img th:unless="*{avaliable}" th:src="@{/img/red.png}" alt="" >
+            </td>
+
             <td>
                 <button class="nav-item nav-link btn btn-outline-dark" type="button" data-toggle="modal"
                         th:data-target="'#showInfo' + ${movie.productNumber}">INFO</button>
