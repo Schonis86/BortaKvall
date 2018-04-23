@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title class="headerThing">Borta Kväll AB</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
-
-
-</head>
+        <html lang="en" xmlns:th="http://www.thymeleaf.org">
+        <head>
+            <meta charset="UTF-8">
+            <title>Overdues</title>
+            <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+            <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+        </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,31 +19,35 @@
                 <a class="nav-item nav-link" href="/home">Home</a>
                 <a class="nav-item nav-link " href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="/customer/customers">Customer</a>
+                <a class="nav-item nav-link active" href="/movie/overduemovies">Overdues</a>
                 <a class="nav-item nav-link" href="/customer/addcustomer">Add Customer</a>
-                <a class="nav-item nav-link active" th:action="@{/movie/overduemovies}" href="/movie/overduemovies">Overdues</a>
             </div>
         </div>
     </nav>
 </header>
+<h3 class="d-flex justify-content-center">Overdues</h3>
+<table class="table">
+    <tr>
+        <th>Product Number</th>
+        <th>Name</th>
+        <th>Rental date</th>
+        <th>Phone</th>
+    </tr>
+    <th:block th:each="movie : ${overduemovies}">
+        <tr id="studentTable">
+            <td th:text="${movie.rentedMovieKey.productNumber}"></td>
+            <td th:text="${movie.rentedMovieKey.socialNumber}"></td>
+            <td th:text="${movie.rentedMovieKey.formatDate()}"></td>
+        </tr>
+    </th:block>
 
-
-    <form th:object="${checkCustomerForm}" method="post">
-        <label for="customerSSN">Social Security Number</label>
-        <input th:value="*{socialNumber}" name="socialNumber" type="text" class="form-control" id="customerSSN"
-               placeholder="000000-0000">
-        <label th:if="${#fields.hasErrors('socialNumber')}" th:errors="*{socialNumber}"></label>
-
-        <button class="nav-item nav-link btn btn-primary" data-toggle="modal"
-                data-target=".bd-example-modal-lg" type="submit">Submit
-        </button>
-    </form>
-
-
-<footer>
-
-</footer>
+</table>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.js}"></script>
 </body>
+</html></title>
+</head>
+<body>
 
+</body>
 </html>
