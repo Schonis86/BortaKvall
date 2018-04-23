@@ -58,7 +58,7 @@ public class MovieController {
                 .filter(om -> om.getRentedMovieKey().getFromDate().isBefore(LocalDateTime.now().minusMinutes(2)))
                 .collect(Collectors.toList());
         overduedMovies.forEach(rm -> rm.setCustomer(customerR.getOne(rm.getRentedMovieKey().getSocialNumber())));
-        overduedMovies.forEach(rm -> rm.setMovie(movieR.getOne(rm.getRentedMovieKey().getProductNumber())));
+        overduedMovies.forEach(rm -> rm.setMovie(movieRep.getOne(rm.getRentedMovieKey().getProductNumber())));
 
         model.addAttribute("overduemovies", overduedMovies);
         return "/movie/overduemovies";
