@@ -7,3 +7,5 @@ log/
 target/
 
 .DS_Store
+
+application.properties
