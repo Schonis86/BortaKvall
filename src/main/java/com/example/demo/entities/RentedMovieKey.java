@@ -1,6 +1,8 @@
 package com.example.demo.entities;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,7 +10,9 @@ import java.time.format.DateTimeFormatter;
 
 @Embeddable
 public class RentedMovieKey implements Serializable {
+
     private Long productNumber;
+
     private String socialNumber;
     private LocalDateTime fromDate;
 

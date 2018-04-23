@@ -1,9 +1,6 @@
 package com.example.demo.entities;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -13,7 +10,13 @@ public class RentedMovie {
 
     @EmbeddedId
     private RentedMovieKey rentedMovieKey;
+
     private LocalDate toDate;
+
+    @ManyToOne
+    private Customer customer;
+    @ManyToOne
+    private Movie movie;
 
     public RentedMovie(){
 
@@ -38,5 +41,21 @@ public class RentedMovie {
 
     public void setToDate(LocalDate toDate) {
         this.toDate = toDate;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 }

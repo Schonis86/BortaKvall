@@ -33,7 +33,7 @@ public class Customer {
 
     private String email;
 
-    private List<Movie> movies;
+    private List<RentedMovie> rentedMovies;
 
     public Customer(){
 
@@ -52,18 +52,6 @@ public class Customer {
         this.email = email;
     }
 
-    public Customer(String socialNumber, String fName, String lName, String address, String zipCode, String city, String country, String phone, String email, List<Movie> movies) {
-        this.socialNumber = socialNumber;
-        this.fName = fName;
-        this.lName = lName;
-        this.address = address;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.country = country;
-        this.phone = phone;
-        this.email = email;
-        this.movies = movies;
-    }
 
     public boolean hasRentedMovies(RentedMovieRepository rentRepo) {
 
@@ -83,6 +71,7 @@ public class Customer {
     public void setSocialNumber(String socialNumber) {
         this.socialNumber = socialNumber;
     }
+
 
     public String getfName() {
         return fName;
@@ -148,12 +137,12 @@ public class Customer {
         this.email = email;
     }
 
-    @ManyToMany(mappedBy = "customers")
-    public List<Movie> getMovies() {
-        return movies;
+    @OneToMany(mappedBy = "customer")
+    public List<RentedMovie> getRentedMovies() {
+        return rentedMovies;
     }
 
-    public void setMovies(List<Movie> movies) {
-        this.movies = movies;
+    public void setRentedMovies(List<RentedMovie> rentedMovies) {
+        this.rentedMovies = rentedMovies;
     }
 }
