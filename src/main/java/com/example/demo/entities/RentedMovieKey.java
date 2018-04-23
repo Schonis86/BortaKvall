@@ -11,8 +11,8 @@ import java.time.format.DateTimeFormatter;
 @Embeddable
 public class RentedMovieKey implements Serializable {
 
-    private Long productNumber;
 
+    private Long productNumber;
     private String socialNumber;
     private LocalDateTime fromDate;
 
