@@ -29,15 +29,22 @@
 <table class="table">
     <tr>
         <th>Product Number</th>
-        <th>Name</th>
-        <th>Rental date</th>
+        <th>Movie Name</th>
+        <th>Social Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Rental Date</th>
         <th>Phone</th>
     </tr>
-    <th:block th:each="movie : ${overduemovies}">
+    <th:block th:each="rentedMovie : ${overduemovies}">
         <tr id="studentTable">
-            <td th:text="${movie.rentedMovieKey.productNumber}"></td>
-            <td th:text="${movie.rentedMovieKey.socialNumber}"></td>
-            <td th:text="${movie.rentedMovieKey.formatDate()}"></td>
+            <td th:text="${rentedMovie.rentedMovieKey.productNumber}"></td>
+            <td th:text="${rentedMovie.movie.name}"></td>
+            <td th:text="${rentedMovie.rentedMovieKey.socialNumber}"></td>
+            <td th:text="${rentedMovie.customer.fName}"></td>
+            <td th:text="${rentedMovie.customer.lName}"></td>
+            <td th:text="${rentedMovie.rentedMovieKey.formatDate()}"></td>
+            <td th:text="${rentedMovie.customer.phone}"></td>
         </tr>
     </th:block>
 

@@ -3,6 +3,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.entities.Movie;
 import com.example.demo.entities.RentedMovie;
+import com.example.demo.repositories.CustomerRepository;
 import com.example.demo.repositories.MovieRepository;
 import com.example.demo.repositories.RentedMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class MovieController {
     private MovieRepository movieR;
     @Autowired
     private RentedMovieRepository rentedMovieR;
+    @Autowired
+    private CustomerRepository customerR;
 
 
     @GetMapping("/movies")
@@ -52,8 +55,11 @@ public class MovieController {
     public String overduedMovies(Model model){
 
         List<RentedMovie> overduedMovies = rentedMovieR.findByToDate(null).stream()
-                .filter(m -> m.getRentedMovieKey().getFromDate().isBefore(LocalDateTime.now().minusMinutes(2)))
+
+                .filter(om -> om.getRentedMovieKey().getFromDate().isBefore(LocalDateTime.now().minusMinutes(2)))
                 .collect(Collectors.toList());
+        overduedMovies.forEach(rm -> rm.setCustomer(customerR.getOne(rm.getRentedMovieKey().getSocialNumber())));
+        overduedMovies.forEach(rm -> rm.setMovie(movieR.getOne(rm.getRentedMovieKey().getProductNumber())));
 
         model.addAttribute("overduemovies", overduedMovies);
         return "/movie/overduemovies";
