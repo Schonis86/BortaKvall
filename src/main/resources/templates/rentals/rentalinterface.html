@@ -20,12 +20,12 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/home">Home</a>
-                <a class="nav-item nav-link active" href="/movie/movies">Movies <span
+                <a class="nav-item nav-link" href="/movie/movies">Movies <span
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
-                   data-target=".bd-example-modal-lg">Add Movie</a>
+                <!--<a class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
+                   data-target=".bd-example-modal-lg">Add Movie</a>-->
             </div>
         </div>
     </nav>
@@ -43,127 +43,124 @@
                 </button>
             </div>
 
-            <div>
-                <form th:action="@{rentals/changecustomer}" method="post">
+            <div id="changeCustomerDiv">
+                <form id="changeCustomerForm" th:action="@{rentals/changecustomer}" method="post">
                     <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="firstName">First Name</label>
-                            <input name="fName" type="text" class="form-control" id="firstName" th:placeholder="${customer.fName}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="lastName">Last Name</label>
-                            <input name="lName" type="text" class="form-control" id="lastName" th:placeholder="${customer.lName}">
-                        </div>
-                    </div>
-                    <div class="form-row">
 
-                        <div class="form-group col-md-4">
-                            <label for="address">Address</label>
-                            <input name="address" type="text" class="form-control" id="address" th:placeholder="${customer.address}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="zipcode">Zip Code</label>
-                            <input name="zipCode" type="text" class="form-control" id="zipcode" th:placeholder="${customer.zipCode}">
-                        </div>
+                    <div class="changeCustomer-row">
+                        <label class="customerLabel" for="firstName">First Name</label>
+                        <input name="fName" type="text" class="customerInput" id="firstName"
+                               th:placeholder="${customer.fName}">
 
-                    </div>
-                    <div class="form-row">
-
-                        <div class="form-group col-md-4">
-                            <label for="city">City</label>
-                            <input name="city" type="text" class="form-control" id="city" th:placeholder="${customer.city}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="country">Country</label>
-                            <input name="country" type="text" class="form-control" id="country" th:placeholder="${customer.country}">
-                        </div>
-
+                        <label class="customerLabel" for="lastName">Last Name</label>
+                        <input name="lName" type="text" class=" customerInput" id="lastName"
+                               th:placeholder="${customer.lName}">
                     </div>
 
-                    <div class="form-row">
+                    <div class="changeCustomer-row">
 
-                        <div class="form-group col-md-4">
-                            <label for="phoneN">Phone Number</label>
-                            <input name="phone" type="text" class="form-control" id="phoneN" th:placeholder="${customer.phone}">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="email">Email</label>
-                            <input name="email" type="email" class="form-control" id="email" th:placeholder="${customer.email}">
-                        </div>
+                        <label class="customerLabel" for="address">Address</label>
+                        <input name="address" type="text" class="customerInput" id="address"
+                               th:placeholder="${customer.address}">
+
+                        <label class="customerLabel" for="zipcode">Zip Code</label>
+                        <input name="zipCode" type="text" class="customerInput" id="zipcode"
+                               th:placeholder="${customer.zipCode}">
+
+                    </div>
+                    <div class="changeCustomer-row">
+
+                        <label class="customerLabel" for="city">City</label>
+                        <input name="city" type="text" class="customerInput" id="city"
+                               th:placeholder="${customer.city}">
+
+                        <label class="customerLabel" for="country">Country</label>
+                        <input name="country" type="text" class="customerInput" id="country"
+                               th:placeholder="${customer.country}">
 
                     </div>
 
-                    <button class="btn btn-outline-dark" type="submit" >Save Customer</button>
+                    <div class="changeCustomer-row">
 
+                        <label class="customerLabel" for="phoneN">Phone Number</label>
+                        <input name="phone" type="text" class=" customerInput" id="phoneN"
+                               th:placeholder="${customer.phone}">
+
+                        <label class="customerLabel" for="email">Email</label>
+                        <input name="email" type="email" class="customerInput" id="email"
+                               th:placeholder="${customer.email}">
+                    </div>
+                    <div id="changeCustomerBtnDiv">
+                        <button id="changeCustomerBtn" class="btn btn-outline-dark" type="submit">Save Customer</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<div th:object="${customer}" class="container">
+<div id="middleDiv">
+<div  class="bg-light"  id="customerInfoDiv" th:object="${customer}">
 
-    <p th:text="*{socialNumber}"></p>
-    <p th:text="*{fName}"></p>
-    <p th:text="*{lName}"></p>
-    <p th:text="*{address}"></p>
-    <p th:text="*{zipCode}"></p>
-    <p th:text="*{city}"></p>
-    <p th:text="*{country}"></p>
-    <p th:text="*{phone}"></p>
-    <p th:text="*{email}"></p>
+    <div id="infoform">
+    <h4>Customer Information</h4>
 
-    <button class="nav-item nav-link btn btn-primary btn btn-primary" type="button" data-toggle="modal"
-            data-target=".bd-example-modal-lg" >Change Customer</button>
-
-
+    <span th:text="'SSN: '+*{socialNumber}"></span><br>
+    <span th:text="'Name: '+*{fName}+' '+ *{lName} "></span><br>
+    <span th:text="'Address: '+ *{address}"></span><br>
+    <span th:text="*{zipCode}+ ', '+ *{city} "></span><br>
+    <span th:text="*{country}"></span><br>
+    <br>
+    <span th:text="'Phone Number: '+*{phone}"></span><br>
+    <span th:text="'Email: '+*{email}"></span><br>
+    <button class="nav-item nav-link btn btn-primary btn btn-outline-dark" type="button" data-toggle="modal"
+            data-target=".bd-example-modal-lg">Change Customer
+    </button>
+    </div>
 </div>
 
-<div>
-    <form action="#" method="post">
-        <label>ArtNr</label>
+
+
+<div id="rightBox">
+
+<div id="submitDiv">
+    <form id="submitForm" action="#" method="post">
+        <label>Product Number</label>
         <input type="text" name="productNumber">
         <!--<input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">-->
-        <button type="submit">Submit</button>
+        <button class="nav-item nav-link btn btn-outline-dark" type="submit">Submit</button>
     </form>
 </div>
 
 
 <div th:if="${customer.hasRentedMovies(@rentedMovieRepository)}">
-<h3 class="d-flex justify-content-center">Rented Movies</h3>
-<table  class="table">
-    <tr>
-        <th>Product Number</th>
-        <th>Name</th>
-        <th>From Date</th>
-        <th>Return movie</th>
-    </tr>
-
-    <th:block  th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} == null">
-        <tr id="studentTable" >
-            <td th:text="${rentedMovie.rentedMovieKey.productNumber}">dummy</td>
-
-            <!--<td th:each="name: ${movies}" th:if="${name.productNumber} == ${movie.rentedMovieKey.productNumber}" th:text="${name.name}">dummy</td>-->
-           <td th:text="${rentedMovie.movie.name}">dummy</td>
-            <td th:text="${rentedMovie.rentedMovieKey.formatDate()}">dummy</td>
-            <td><form th:action="@{rentals/returnRentedMovie}" method="post">
-                <input type="hidden" name="productNumber" th:value="${rentedMovie.movie.productNumber}">
-                <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
-                <input type="hidden" name="fromDate" th:value="${rentedMovie.rentedMovieKey.fromDate}">
-                <button class="nav-item nav-link btn btn-outline-dark" type="submit">Return</button></form></td>
-
-            <!-- <td>
-                 <form action="#" th:action="@{student_profile/personNumber}" method="post">
-                     <input type="hidden" th:value="*{personNumber}" name="personNumber">
-                     <button class="btn btn-outline-dark" type="submit">Show</button>
-                 </form>
-             </td>-->
+    <h3 class="d-flex justify-content-center">Rented Movies</h3>
+    <table class="table">
+        <tr>
+            <th>Product Number</th>
+            <th>Name</th>
+            <th>From Date</th>
+            <th>Return movie</th>
         </tr>
-    </th:block>
-</table>
 
-</div>
+        <th:block th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} == null">
+            <tr id="studentTable">
+                <td th:text="${rentedMovie.rentedMovieKey.productNumber}">dummy</td>
+                <td th:text="${rentedMovie.movie.name}">dummy</td>
+                <td th:text="${rentedMovie.rentedMovieKey.formatDate()}">dummy</td>
+                <td>
+                    <form th:action="@{rentals/returnRentedMovie}" method="post">
+                        <button class="nav-item nav-link btn btn-outline-dark" type="submit">Return</button>
+                        <input type="hidden" name="productNumber" th:value="${rentedMovie.movie.productNumber}">
+                        <input type="hidden" name="socialNumber" th:value="${customer.socialNumber}">
+                        <input type="hidden" name="fromDate" th:value="${rentedMovie.rentedMovieKey.fromDate}">
+                    </form>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+
+
 <h3 class="d-flex justify-content-center">History</h3>
 <table class="table">
     <tr>
@@ -173,27 +170,16 @@
         <th>Returned</th>
     </tr>
 
-    <th:block  th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} != null">
-        <tr >
+    <th:block th:each="rentedMovie : ${rentedMovies}" th:if="${rentedMovie.toDate} != null">
+        <tr>
             <td th:text="${rentedMovie.movie.productNumber}">dummy</td>
-
             <td th:text="${rentedMovie.movie.name}">dummy</td>
             <td th:text="${rentedMovie.rentedMovieKey.formatDate()}">dummy</td>
             <td th:text="${rentedMovie.toDate}">dummy</td>
-
-
-
-            <!-- <td>
-                 <form action="#" th:action="@{student_profile/personNumber}" method="post">
-                     <input type="hidden" th:value="*{personNumber}" name="personNumber">
-                     <button class="btn btn-outline-dark" type="submit">Show</button>
-                 </form>
-             </td>-->
         </tr>
     </th:block>
 </table>
-
-
+</div>
 
 <footer>
 

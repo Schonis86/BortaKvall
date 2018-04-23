@@ -1,22 +1,140 @@
-.headerThing{
-   display: flex;
+#checkCustmerMiddle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+#checkCustomerForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+#checkCustomerDiv {
+    display: flex;
     flex-direction: row;
+    width: 600px;
+    height: 300px;
+    justify-content: center;
+    align-content: center;
+}
+#addMovieDiv{
+    margin-left: 4%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+}
+
+#customerSSN {
+    width: 200px;
+}
+#deleteBtn{
+    width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+#movieName{
+    width: 150px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#customerSSNBtn {
+    width: 200px;
+    margin-top: 25px;
+}
+
+#changeCustomerDiv {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-content: center;
+}
+
+.changeCustomer-row {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+#changeCustomerBtnDiv {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-content: flex-end;
+}
+
+#changeCustomerBtn {
+    margin-top: 30px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+}
+
+.customerInput {
+    width: 150px;
+
+}
+
+.customerLabel {
+    width: 110px;
+}
+
+#customerInfoDiv {
+    width: 20%;
+    height: 800px;
+}
+
+#rightBox {
+    width: 80%;
+}
+
+#infoform {
+    margin-top: 10%;
+    margin-left: 4%;
+
+}
+
+#middleDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+#submitDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+}
+
+#submitForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
+#submitForm label {
+    font-size: 35px;
+}
 
+#submitForm button {
+    margin-top: 3%;
+}
 
-
-@media only screen
-and (min-device-width: 300px)
-and (max-device-width: 768px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (orientation: portrait) {
-
-
-    #profilepicture{
-        width: 25%;
-    }
-
+#addCustomerDiv {
+    margin-left: 3%;
+    margin-top: 3%;
 
 }
+
+
+
