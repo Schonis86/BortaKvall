@@ -4,8 +4,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title class="headerThing">Borta Kväll AB</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 
 
 </head>
@@ -23,67 +23,84 @@
                 <a class="nav-item nav-link " href="/movie/movies">Movies <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link"  href="/customer/addcustomer"
+                <a class="nav-item nav-link" href="/customer/addcustomer"
                 >Add Customer</a>
             </div>
         </div>
     </nav>
 </header>
 
-<form method="post" th:object="${customerForm}">
+<div id="addCustomerDiv">
+<form id="addCustomerForm" method="post" th:object="${customerForm}">
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
             <label for="customerSSN">Social Security Number</label>
-            <input th:value="*{socialNumber}"  name="socialNumber" type="text" class="form-control" id="customerSSN" placeholder="Social Security Number">
+            <input th:value="*{socialNumber}" name="socialNumber" type="text" class="form-control" id="customerSSN"
+                   placeholder="Social Security Number">
             <label th:if="${#fields.hasErrors('socialNumber')}" th:errors="*{socialNumber}"></label>
         </div>
-        <div class="form-group col-md-6">
-            <label for="firstName">First Name</label>
-            <input th:value="*{fName}" name="fName" type="text" class="form-control" id="firstName" placeholder="First Name">
-            <label th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}"></label>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input th:value="*{lName}" name="lName" type="text" class="form-control" id="lastName" placeholder="Last Name">
-        <label th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}"></label>
-    </div>
-    <div class="form-group">
-        <label for="inputAddress">Address</label>
-        <input th:value="*{address}" name="address" type="text" class="form-control" id="inputAddress" placeholder="Address">
-        <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="inputCity">City</label>
-            <input th:value="*{city}" name="city" type="text" class="form-control" id="inputCity">
-            <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></label>
+        <div class="form-group col-md-3">
+            <label for="firstName">First Name</label>
+            <input th:value="*{fName}" name="fName" type="text" class="form-control" id="firstName"
+                   placeholder="First Name">
+            <label th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}"></label>
         </div>
+        <div class="form-group col-md-3">
+            <label for="lastName">Last Name</label>
+            <input th:value="*{lName}" name="lName" type="text" class="form-control" id="lastName"
+                   placeholder="Last Name">
+            <label th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}"></label>
+        </div>
+    </div>
+    <div class="form-row">
         <div class="form-group col-md-4">
-            <label for="inputcountry">Country</label>
-            <input th:value="*{country}" name="country" type="text" class="form-control" id="inputcountry">
-            <label th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></label>
+            <label for="inputAddress">Address</label>
+            <input th:value="*{address}" name="address" type="text" class="form-control" id="inputAddress"
+                   placeholder="Address">
+            <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
         </div>
         <div class="form-group col-md-2">
             <label for="inputZip">Zip Code</label>
-            <input th:value="*{zipCode}" name="zipCode" type="text" class="form-control" id="inputZip">
+            <input th:value="*{zipCode}" name="zipCode" type="text" class="form-control" placeholder="Zip Code"
+                   id="inputZip">
             <label th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></label>
         </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
-        <input th:value="*{email}" name="email" type="email" class="form-control" id="inputEmail4" placeholder="Email">
-        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+            <label for="inputCity">City</label>
+            <input th:value="*{city}" name="city" placeholder="City" type="text" class="form-control" id="inputCity">
+            <label th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></label>
+        </div>
+        <div class="form-group col-md-3">
+            <label for="inputcountry">Country</label>
+            <input th:value="*{country}" name="country" placeholder="Country" type="text" class="form-control"
+                   id="inputcountry">
+            <label th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></label>
+        </div>
     </div>
-    <div class="form-group col-md-6">
-        <label for="phoneNumber">Phone Number</label>
-        <input th:value="*{phone}" name="phone" type="text" class="form-control" id="phoneNumber" placeholder="Phone Number">
-        <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></label>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input th:value="*{email}" name="email" type="email" class="form-control" id="inputEmail4"
+                   placeholder="Email">
+            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="phoneNumber">Phone Number</label>
+            <input th:value="*{phone}" name="phone" type="text" class="form-control" id="phoneNumber"
+                   placeholder="Phone Number">
+            <label th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></label>
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class=" btn btn-outline-dark">Save</button>
 </form>
-
+</div>
 
 <footer>
 

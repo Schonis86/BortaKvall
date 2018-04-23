@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title class="headerThing">Borta Kväll AB</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Borta Kväll AB</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 
 
 </head>
@@ -28,18 +28,21 @@
         </div>
     </nav>
 </header>
-
-
-    <form th:object="${checkCustomerForm}" method="post">
-        <label for="customerSSN">Social Security Number</label>
+<div id="checkCustmerMiddle">
+<figure class=" border border-dark figure bg-light rounded" id="checkCustomerDiv">
+    <form  id="checkCustomerForm" th:object="${checkCustomerForm}" method="post">
+        <h3 >Vad ska stå här?</h3>
         <input th:value="*{socialNumber}" name="socialNumber" type="text" class="form-control" id="customerSSN"
                placeholder="000000-0000">
         <label th:if="${#fields.hasErrors('socialNumber')}" th:errors="*{socialNumber}"></label>
 
-        <button class="nav-item nav-link btn btn-primary" data-toggle="modal"
+        <button id="customerSSNBtn" class="nav-item nav-link btn btn-outline-dark" data-toggle="modal"
                 data-target=".bd-example-modal-lg" type="submit">Submit
         </button>
     </form>
+</figure>
+</div>
+
 
 
 <footer>

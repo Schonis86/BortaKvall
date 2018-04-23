@@ -52,12 +52,12 @@
                 </button>
             </div>
 
-            <div>
+            <div id="addMovieDiv">
                 <form method="post">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="movieName">Title</label>
-                            <input name="name" type="text" class="form-control" id="movieName" placeholder="Title">
+                            <label for="movieN">Title</label>
+                            <input name="name" type="text" class="form-control" id="movieN" placeholder="Title">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieRD">Release Date</label>
@@ -110,14 +110,9 @@
             </div>
 
             <div>
-                <form th:action="@{/movie/deletemovie}"method="post">
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="movieName">Name</label>
-                            <input name="productNumber" type="text" class="form-control" id="movieID" placeholder="Movie id">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-outline-dark">Delete Movie</button>
+                <form th:action="@{/movie/deletemovie}" method="post">
+                            <input  name="productNumber" type="text" class="form-control" id="movieName" placeholder="Movie id">
+                            <button id="deleteBtn" type="submit" class="btn btn-outline-dark">Delete Movie</button>
                 </form>
             </div>
         </div>
