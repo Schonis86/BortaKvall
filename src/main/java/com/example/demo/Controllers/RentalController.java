@@ -7,6 +7,7 @@ import com.example.demo.entities.RentedMovieKey;
 import com.example.demo.repositories.CustomerRepository;
 import com.example.demo.repositories.MovieRepository;
 import com.example.demo.repositories.RentedMovieRepository;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +45,7 @@ public class RentalController {
         List<RentedMovie> rentedMovies = rentedMovieRep.findByRentedMovieKeySocialNumber(socialNumber);
         rentedMovies.forEach(rm -> rm.setCustomer(customerRep.getOne(rm.getRentedMovieKey().getSocialNumber())));
         rentedMovies.forEach(rm -> rm.setMovie(movieRep.getOne(rm.getRentedMovieKey().getProductNumber())));
+        Collections.reverse(rentedMovies);
 
         model.addAttribute("rentedMovies", rentedMovies);
         model.addAttribute("customer", customerRep.getOne(socialNumber));
