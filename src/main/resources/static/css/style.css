@@ -151,5 +151,12 @@
     height: 50%;
 }
 
+#footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
 
 
