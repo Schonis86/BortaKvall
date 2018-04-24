@@ -140,5 +140,16 @@
 
 }
 
+#errorBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#errorBody img{
+    width: 50%;
+    height: 50%;
+}
+
 
 
