@@ -31,7 +31,7 @@
 <div id="checkCustmerMiddle">
 <figure class=" border border-dark figure bg-light rounded" id="checkCustomerDiv">
     <form  id="checkCustomerForm" th:object="${checkCustomerForm}" method="post">
-        <h3 >Vad ska stå här?</h3>
+        <h3 >Customer</h3>
         <input th:value="*{socialNumber}" name="socialNumber" type="text" class="form-control" id="customerSSN"
                placeholder="000000-0000">
         <label th:if="${#fields.hasErrors('socialNumber')}" th:errors="*{socialNumber}"></label>

@@ -13,17 +13,17 @@
 
 <div id="checkCustmerMiddle">
     <figure class=" border border-dark figure bg-light rounded" id="checkCustomerDiv">
-        <form  id="checkCustomerForm" method="post" th:action="@{/login}">
+        <form id="checkCustomerForm" method="post" th:action="@{/login}">
 
-            <input name="username" type="text" class="form-control">
-            <input name="password" type="password" class="form-control">
+            <h3>Login</h3>
+            <input name="username" type="text" class="form-control" placeholder="User Name">
+            <input name="password" type="password" class="form-control" placeholder="Password">
 
-            <input name="submit" type="submit" value="Login">
-           <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+            <input id="loginBtn" class="nav-item nav-link btn btn-outline-dark" name="submit" type="submit" value="Login">
+            <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
         </form>
     </figure>
 </div>
-
 
 
 <footer>

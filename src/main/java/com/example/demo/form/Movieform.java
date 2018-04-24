@@ -1,5 +1,7 @@
 package com.example.demo.form;
 
+import javafx.beans.DefaultProperty;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -21,4 +23,6 @@ public class Movieform {
     private String category;
     @Size(min = 2)
     private String format;
+
+    private String imgLink;
 }
