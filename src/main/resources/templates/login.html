@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Borta Kväll AB</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+</head>
+<body>
+
+<div id="checkCustmerMiddle">
+    <figure class=" border border-dark figure bg-light rounded" id="checkCustomerDiv">
+        <form  id="checkCustomerForm" method="post" th:action="@{/login}">
+
+            <input name="username" type="text" class="form-control">
+            <input name="password" type="password" class="form-control">
+
+            <input name="submit" type="submit" value="Login">
+           <!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+        </form>
+    </figure>
+</div>
+
+
+
+<footer>
+
+</footer>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.js}"></script>
+
+</body>
+
+</html>
