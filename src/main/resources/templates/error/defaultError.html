@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>:/</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+</head>
+<body id="errorBody">
+
+
+<img th:src="@{/img/a_a_a.gif}">
+<h2><p th:text="${exceptionMessage}"></p>
+    <p th:text="'At: ' + ${url}"></p>
+
+</h2>
+
+<script>
+
+        var myAudio = new Audio('../audio/aaa.mp3');
+        myAudio.loop = true;
+        myAudio.play();
+
+</script>
+</body>
+
+</html>

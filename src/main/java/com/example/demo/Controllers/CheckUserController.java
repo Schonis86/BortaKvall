@@ -26,9 +26,9 @@ public class CheckUserController {
     }
 
     @PostMapping("/home")
-    public String checkUser(@Valid CheckCustomerForm checkCustomerForm, BindingResult bindingResult, @RequestParam String socialNumber, Model model, @ModelAttribute Customer customer) {
+    public String checkUser(@Valid CheckCustomerForm checkCustomerForm, BindingResult bindingResult, @RequestParam String socialNumber, Model model) {
 
-        customer = checkCustomerRepository.getOne(socialNumber);
+        Customer customer = checkCustomerRepository.findById(socialNumber).get();
 
 
         if (bindingResult.hasErrors()){

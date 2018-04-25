@@ -11,12 +11,16 @@
 
 
 <img th:src="@{/img/a_a_a.gif}">
-<span th:text="${exceptionMessage}"></span>
+    <h2>404: FILE NOT FOUND</h2>
+
+</h2>
 
 <script>
-    myAudio = new Audio('audio/aaa.mp3');
+
+    var myAudio = new Audio('../audio/aaa.mp3');
     myAudio.loop = true;
     myAudio.play();
+
 </script>
 </body>
 

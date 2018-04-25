@@ -144,11 +144,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif;
 }
 
 #errorBody img{
     width: 50%;
     height: 50%;
+
 }
 
 #footer{
