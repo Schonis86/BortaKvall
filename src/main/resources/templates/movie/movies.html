@@ -219,7 +219,7 @@
     <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
         <nav>
             <ul class="pagination pagination-sm justify-content-center">
-                <li class="page-item">
+                <li th:if="${movies.totalPages &gt; 1}" class="page-item">
                     <form method="get">
                         <input type="hidden" name="page" th:value="${prev}">
                         <button class="text-dark page-link" type="submit">PREV</button>
@@ -232,7 +232,7 @@
                        th:href="@{${urlBuilder.replaceQueryParam('page', {i}).toUriString()}}"
                        th:classappend="${currentPage}==${i}?'active':''"></a>
                 </li>
-                <li class="page-item">
+                <li th:if="${movies.totalPages &gt; 1}" class="page-item">
                     <form method="get">
                         <input type="hidden" name="page" th:value="${next}">
                         <button class="text-dark page-link" type="submit">NEXT</button>
