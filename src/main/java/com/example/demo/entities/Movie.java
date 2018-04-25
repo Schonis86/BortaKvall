@@ -29,9 +29,14 @@ public class Movie {
         this.description = description;
         this.releaseDate = releaseDate;
         this.category = category;
+        if (imgLink != "") {
+            this.imgLink = imgLink;
+        } else
+            this.imgLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
         this.format = format;
-        this.imgLink = imgLink;
         this.avaliable = avaliable;
+
+
     }
 
 
