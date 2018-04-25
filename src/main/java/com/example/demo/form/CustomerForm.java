@@ -5,34 +5,34 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class CustomerForm {
-    @Size(min = 11, max = 11)
-    @Pattern(regexp = "^[0-9]{6}-[0-9]{4}")
+    @Size(min = 11, max = 11, message = "must contain 11 numbers")
+    @Pattern(regexp = "^[0-9]{6}-[0-9]{4}", message = "enter as xxxxxx-xxxx")
     private String socialNumber;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String fName;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String lName;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String address;
     @NotNull
-    @Size(min = 6, max = 6)
-    @Pattern(regexp = "^[0-9]{3}\\s[0-9]{2}")
+    @Size(min = 2, message = "Required")
+    @Pattern(regexp = "^[0-9]{3}\\s[0-9]{2}", message = "enter as xxx xx")
     private String zipCode;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String city;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String country;
     @NotNull
-    @Size(min = 9, max = 11)
-    @Pattern(regexp = "[0-9]{3,4}-[0-9]{6,7}")
+    @Size(min = 9, max = 11, message = "Required")
+    @Pattern(regexp = "[0-9]{3,4}-[0-9]{6,7}", message = "enter as xxx-xxxxxxx")
     private String phone;
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2, message = "Required")
     private String email;
 
 
