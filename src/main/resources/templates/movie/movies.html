@@ -24,20 +24,46 @@
                         class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/customer/customers">Customer</a>
 
-                <a class="nav-item nav-link"  data-toggle="modal"
+                <a class="nav-item nav-link" data-toggle="modal"
                    data-target=".bd-example-modal-lg" onMouseOver="this.style.cursor='pointer'">Add Movie</a>
 
-                <a class="nav-item nav-link"  data-toggle="modal" data-target="#modal2" onMouseOver="this.style.cursor='pointer'">Delete Movie</a>
+                <a class="nav-item nav-link" data-toggle="modal" data-target="#modal2"
+                   onMouseOver="this.style.cursor='pointer'">Delete Movie</a>
 
 
             </div>
         </div>
+            <a class="nav-item nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Advanced Search
+            </a>
+
         <form method="get" th:action="@{/movie/titleSearch}" class="form-inline my-2 my-lg-0">
-            <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search By Title" aria-label="Search">
+            <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search By Title"
+                   aria-label="Search">
             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
 </header>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div id="movieCategorySearchDiv">
+        <form id="movieCategorySearch"  method="get" th:action="@{/movie/categorysearch}" class="form-inline my-2 my-lg-0">
+            <label>Category Search:</label>
+            <select type="text" name="category">
+                <option value="HORROR">Horror</option>
+                <option value="SI-FI">Si-Fi</option>
+                <option value="ADVENTURE">Adventure</option>
+                <option value="ACTION">Action</option>
+                <option value="DRAMA">Drama</option>
+                <option value="ANIMATION">Animation</option>
+                <option value="COMEDY">Comedy</option>
+            </select>
+            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">Search</button>
+
+        </form>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -69,8 +95,15 @@
 
                         <div class="form-group col-md-4">
                             <label for="movieCategory">Category</label>
-                            <input name="category" type="text" class="form-control" id="movieCategory"
-                                   placeholder="Category">
+                            <select id="movieCategory" type="text" name="category">
+                                <option value="HORROR">Horror</option>
+                                <option value="SI-FI">Si-Fi</option>
+                                <option value="ADVENTURE">Adventure</option>
+                                <option value="ACTION">Action</option>
+                                <option value="DRAMA">Drama</option>
+                                <option value="ANIMATION">Animation</option>
+                                <option value="COMEDY">Comedy</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Format</label>
@@ -90,7 +123,8 @@
 
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Images Link</label>
-                            <input name="imgLink" type="text" class="form-control" id="imagesLink" placeholder="Images Link">
+                            <input name="imgLink" type="text" class="form-control" id="imagesLink"
+                                   placeholder="Images Link">
                         </div>
                     </div>
 
@@ -115,8 +149,8 @@
 
             <div>
                 <form th:action="@{/movie/deletemovie}" method="post">
-                            <input  name="productNumber" type="text" class="form-control" id="movieName" placeholder="Movie id">
-                            <button id="deleteBtn" type="submit" class="btn btn-outline-dark">Delete Movie</button>
+                    <input name="productNumber" type="text" class="form-control" id="movieName" placeholder="Movie id">
+                    <button id="deleteBtn" type="submit" class="btn btn-outline-dark">Delete Movie</button>
                 </form>
             </div>
         </div>
@@ -143,13 +177,14 @@
             <td th:text="*{category}">dummy</td>
             <td th:text="*{format}">dummy</td>
             <td th:text="*{releaseDate}">dummy</td>
-            <td><img th:if="*{avaliable}" th:src="@{/img/green.png}" alt="" >
-                <img th:unless="*{avaliable}" th:src="@{/img/red.png}" alt="" >
+            <td><img th:if="*{avaliable}" th:src="@{/img/green.png}" alt="">
+                <img th:unless="*{avaliable}" th:src="@{/img/red.png}" alt="">
             </td>
 
             <td>
                 <button class="nav-item nav-link btn btn-outline-dark" type="button" data-toggle="modal"
-                        th:data-target="'#showInfo' + ${movie.productNumber}">INFO</button>
+                        th:data-target="'#showInfo' + ${movie.productNumber}">INFO
+                </button>
             </td>
 
             <!-- <td>
@@ -169,8 +204,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div th:text="*{movie.description}" ></div>
-                        <img style="width:182px;height:268px;" th:src="${movie.imgLink}" >
+                    <div th:text="*{movie.description}"></div>
+                    <img style="width:182px;height:268px;" th:src="${movie.imgLink}">
                 </div>
             </div>
         </div>
@@ -178,7 +213,34 @@
 </table>
 
 
-<footer>
+<footer id="footer">
+
+
+    <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
+        <nav>
+            <ul class="pagination pagination-sm justify-content-center">
+                <li th:if="${movies.totalPages &gt; 1}" class="page-item">
+                    <form method="get">
+                        <input type="hidden" name="page" th:value="${prev}">
+                        <button class="text-dark page-link" type="submit">PREV</button>
+                    </form>
+                </li>
+                <li class="page-item" th:if="${movies.totalPages &gt; 1}"
+                    th:each="i : ${#numbers.sequence(0,movies.totalPages -1)}">
+                    <a class="text-dark page-link"
+                       th:text="${i+1}"
+                       th:href="@{${urlBuilder.replaceQueryParam('page', {i}).toUriString()}}"
+                       th:classappend="${currentPage}==${i}?'active':''"></a>
+                </li>
+                <li th:if="${movies.totalPages &gt; 1}" class="page-item">
+                    <form method="get">
+                        <input type="hidden" name="page" th:value="${next}">
+                        <button class="text-dark page-link" type="submit">NEXT</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
 
 </footer>
 <script type="text/javascript" th:src="@{/webjars/jquery/3.3.1-1/jquery.js}"></script>

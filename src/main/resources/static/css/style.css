@@ -153,5 +153,34 @@
 
 }
 
+#footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+#movieCategory{
+    height: 38px;
+    width: 249px;
+}
+
+#movieCategorySearch{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+#movieCategorySearch label{
+    margin-right: 2%;
+}
+#movieCategorySearch select{
+    height: 38px;
+    width: 249px;
+    margin-right: 2%;
+}
+#movieCategorySearchDiv{
+    display: flex;
+    flex-direction: column;
+}
 
 

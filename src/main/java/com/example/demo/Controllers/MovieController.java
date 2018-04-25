@@ -7,13 +7,19 @@ import com.example.demo.repositories.CustomerRepository;
 import com.example.demo.repositories.MovieRepository;
 import com.example.demo.repositories.RentedMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/movie")
@@ -26,12 +32,22 @@ public class MovieController {
     @Autowired
     private CustomerRepository customerR;
 
+    private int pages = 0;
+
+  /*  @GetMapping("/movies")
+    public String getAllMovies( Model model, Pageable pageable) {
+        Page<Movie> page = movieRep.findAll(pageable);
+        model.addAttribute("movies",page.getTotalElements());
+        return "movie/movies";
+    }*/
+
 
     @GetMapping("/movies")
-    public String getAllMovies(Model model) {
-
-        model.addAttribute("movies",movieRep.findAll());
-        return "movie/movies";
+    public String getAllMovies(Model model, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("movies", movieRep.findAll(PageRequest.of(page, 10)));
+        model.addAttribute("next", page + 1);
+        model.addAttribute("prev", page - 1);
+        return "/movie/movies";
     }
 
     @PostMapping("/movies")
@@ -66,11 +82,15 @@ public class MovieController {
 
 
     @GetMapping("/titleSearch")
-    public String titleSearch(Model model, @RequestParam String name) {
-        List<Movie> searchResult = movieRep.findAllByNameContainingIgnoreCase(name);
-        model.addAttribute("movies", searchResult);
+    public String titleSearch(Model model, @RequestParam String name, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("movies", movieRep.findAllByNameContainingIgnoreCase(name, PageRequest.of(page, 5)));
         return "/movie/movies";
     }
 
+    @GetMapping("/categorysearch")
+    public String categorySearch(Model model, @RequestParam String category, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("movies", movieRep.findAllByCategory(category, PageRequest.of(page, 5)));
+        return "/movie/movies";
+    }
 
 }
