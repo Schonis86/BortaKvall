@@ -19,7 +19,8 @@ public class Movie {
     private String imgLink;
     private boolean avaliable;
     private List<RentedMovie> rentedMovies;
-
+    private final String defaultImageUrl =
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
     public Movie(){
 
     }
@@ -32,7 +33,7 @@ public class Movie {
         if (imgLink != "") {
             this.imgLink = imgLink;
         } else
-            this.imgLink = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
+            this.imgLink = defaultImageUrl;
         this.format = format;
         this.avaliable = avaliable;
 

@@ -51,7 +51,7 @@
             <label>Category Search:</label>
             <select type="text" name="category">
                 <option value="HORROR">Horror</option>
-                <option value="SI-FI">Si-Fi</option>
+                <option value="SCI-FI">Sci-Fi</option>
                 <option value="ADVENTURE">Adventure</option>
                 <option value="ACTION">Action</option>
                 <option value="DRAMA">Drama</option>
@@ -97,7 +97,7 @@
                             <label for="movieCategory">Category</label>
                             <select id="movieCategory" type="text" name="category">
                                 <option value="HORROR">Horror</option>
-                                <option value="SI-FI">Si-Fi</option>
+                                <option value="SCI-FI">Sci-Fi</option>
                                 <option value="ADVENTURE">Adventure</option>
                                 <option value="ACTION">Action</option>
                                 <option value="DRAMA">Drama</option>
@@ -204,8 +204,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div th:text="*{movie.description}"></div>
-                    <img style="width:182px;height:268px;" th:src="${movie.imgLink}">
+                    <div id="movie-description" style="display:flex;flex-direction: row;">
+                        <img style="width:182px;height:268px;padding:10px;" th:src="${movie.imgLink}">
+                        <div th:text="*{movie.description}"></div>
+                    </div>
                 </div>
             </div>
         </div>
