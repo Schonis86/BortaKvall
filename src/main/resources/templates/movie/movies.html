@@ -33,6 +33,10 @@
 
             </div>
         </div>
+            <a class="nav-item nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                Advance Search
+            </a>
+
         <form method="get" th:action="@{/movie/titleSearch}" class="form-inline my-2 my-lg-0">
             <input name="name" class="form-control mr-sm-2" type="text" placeholder="Search By Title"
                    aria-label="Search">
@@ -40,6 +44,26 @@
         </form>
     </nav>
 </header>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <div id="movieCategorySearchDiv">
+        <form id="movieCategorySearch"  method="get" th:action="@{/movie/categorysearch}" class="form-inline my-2 my-lg-0">
+            <label>Category Search:</label>
+            <select type="text" name="category">
+                <option value="HORROR">Horror</option>
+                <option value="SI-FI">Si-Fi</option>
+                <option value="ADVENTURE">Adventure</option>
+                <option value="ACTION">Action</option>
+                <option value="DRAMA">Drama</option>
+                <option value="ANIMATION">Animation</option>
+                <option value="COMEDY">Comedy</option>
+            </select>
+            <button type="submit" class="btn btn-outline-dark my-2 my-sm-0">Search</button>
+
+        </form>
+        </div>
+    </div>
+</div>
 
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -71,8 +95,15 @@
 
                         <div class="form-group col-md-4">
                             <label for="movieCategory">Category</label>
-                            <input name="category" type="text" class="form-control" id="movieCategory"
-                                   placeholder="Category">
+                            <select id="movieCategory" type="text" name="category">
+                                <option value="HORROR">Horror</option>
+                                <option value="SI-FI">Si-Fi</option>
+                                <option value="ADVENTURE">Adventure</option>
+                                <option value="ACTION">Action</option>
+                                <option value="DRAMA">Drama</option>
+                                <option value="ANIMATION">Animation</option>
+                                <option value="COMEDY">Comedy</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Format</label>
@@ -187,16 +218,16 @@
 
     <div th:with="urlBuilder=${T(org.springframework.web.servlet.support.ServletUriComponentsBuilder).fromCurrentRequest()}">
         <nav>
-            <ul class="pagination pagination-lg justify-content-center">
+            <ul class="pagination pagination-sm justify-content-center">
                 <li class="page-item">
                     <form method="get">
                         <input type="hidden" name="page" th:value="${prev}">
-                        <button class="page-link" type="submit">PREV</button>
+                        <button class="text-dark page-link" type="submit">PREV</button>
                     </form>
                 </li>
                 <li class="page-item" th:if="${movies.totalPages &gt; 1}"
-                    th:each="i : ${#numbers.sequence(0,movies.totalPages-1)}">
-                    <a class="page-link"
+                    th:each="i : ${#numbers.sequence(0,movies.totalPages -1)}">
+                    <a class="text-dark page-link"
                        th:text="${i+1}"
                        th:href="@{${urlBuilder.replaceQueryParam('page', {i}).toUriString()}}"
                        th:classappend="${currentPage}==${i}?'active':''"></a>
@@ -204,7 +235,7 @@
                 <li class="page-item">
                     <form method="get">
                         <input type="hidden" name="page" th:value="${next}">
-                        <button class="page-link" type="submit">NEXT</button>
+                        <button class="text-dark page-link" type="submit">NEXT</button>
                     </form>
                 </li>
             </ul>

@@ -32,7 +32,7 @@ public class MovieController {
     @Autowired
     private CustomerRepository customerR;
 
-    private  int pages =0;
+    private int pages = 0;
 
   /*  @GetMapping("/movies")
     public String getAllMovies( Model model, Pageable pageable) {
@@ -42,12 +42,11 @@ public class MovieController {
     }*/
 
 
-
     @GetMapping("/movies")
     public String getAllMovies(Model model, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("movies", movieRep.findAll(PageRequest.of(page, 10)) );
-        model.addAttribute("next",page + 1);
-        model.addAttribute("prev",page - 1);
+        model.addAttribute("movies", movieRep.findAll(PageRequest.of(page, 10)));
+        model.addAttribute("next", page + 1);
+        model.addAttribute("prev", page - 1);
         return "/movie/movies";
     }
 
@@ -84,7 +83,13 @@ public class MovieController {
 
     @GetMapping("/titleSearch")
     public String titleSearch(Model model, @RequestParam String name, @RequestParam(defaultValue = "0") int page) {
-        model.addAttribute("movies", movieRep.findAllByNameContainingIgnoreCase(name,PageRequest.of(page,1)));
+        model.addAttribute("movies", movieRep.findAllByNameContainingIgnoreCase(name, PageRequest.of(page, 5)));
+        return "/movie/movies";
+    }
+
+    @GetMapping("/categorysearch")
+    public String categorySearch(Model model, @RequestParam String category, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("movies", movieRep.findAllByCategory(category, PageRequest.of(page, 5)));
         return "/movie/movies";
     }
 
