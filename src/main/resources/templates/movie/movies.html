@@ -83,12 +83,12 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="movieN">Title</label>
-                            <input name="name" type="text" class="form-control" id="movieN" placeholder="Title" required>
+                            <input name="name" type="text" class="form-control" id="movieN" placeholder="Title" required min="2">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieRD">Year</label>
                             <input name="releaseDate" type="text" class="form-control" id="movieRD"
-                                   placeholder="YYYY" pattern="[0-9]{4}">
+                                   placeholder="YYYY" pattern="[0-9]{4}" min="2" required>
                         </div>
 
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Format</label>
-                            <input name="format" type="text" class="form-control" id="movieFormat" placeholder="Format" pattern="[A-Z, a-z]{*}" required>
+                            <input name="format" type="text" class="form-control" id="movieFormat" placeholder="Format" pattern="[A-Za-z]{*}" required min="2">
                         </div>
 
                     </div>
