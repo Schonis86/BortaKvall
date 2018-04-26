@@ -83,12 +83,12 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="movieN">Title</label>
-                            <input name="name" type="text" class="form-control" id="movieN" placeholder="Title">
+                            <input name="name" type="text" class="form-control" id="movieN" placeholder="Title" required>
                         </div>
                         <div class="form-group col-md-4">
-                            <label for="movieRD">Release Date</label>
+                            <label for="movieRD">Year</label>
                             <input name="releaseDate" type="text" class="form-control" id="movieRD"
-                                   placeholder="Release Date">
+                                   placeholder="YYYY" pattern="[0-9]{4}">
                         </div>
 
                     </div>
@@ -96,7 +96,7 @@
 
                         <div class="form-group col-md-4">
                             <label for="movieCategory">Category</label>
-                            <select id="movieCategory" type="text" name="category">
+                            <select id="movieCategory" type="text" name="category" required>
                                 <option value="HORROR">Horror</option>
                                 <option value="SCI-FI">Sci-Fi</option>
                                 <option value="ADVENTURE">Adventure</option>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="movieFormat">Format</label>
-                            <input name="format" type="text" class="form-control" id="movieFormat" placeholder="Format">
+                            <input name="format" type="text" class="form-control" id="movieFormat" placeholder="Format" pattern="[A-Z, a-z]{*}" required>
                         </div>
 
                     </div>
