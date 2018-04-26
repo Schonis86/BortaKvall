@@ -51,33 +51,33 @@
                     <div class="changeCustomer-row">
                         <label class="customerLabel" for="firstName">First Name</label>
                         <input name="fName" type="text" class="customerInput" id="firstName"
-                               th:placeholder="${customer.fName}">
+                               th:placeholder="${customer.fName}" min="2">
 
                         <label class="customerLabel" for="lastName">Last Name</label>
                         <input name="lName" type="text" class=" customerInput" id="lastName"
-                               th:placeholder="${customer.lName}">
+                               th:placeholder="${customer.lName}" min="2">
                     </div>
 
                     <div class="changeCustomer-row">
 
                         <label class="customerLabel" for="address">Address</label>
                         <input name="address" type="text" class="customerInput" id="address"
-                               th:placeholder="${customer.address}">
+                               th:placeholder="${customer.address}" min="2">
 
                         <label class="customerLabel" for="zipcode">Zip Code</label>
                         <input name="zipCode" type="text" class="customerInput" id="zipcode"
-                               th:placeholder="${customer.zipCode}">
+                               th:placeholder="${customer.zipCode}" min="2" pattern="[0-9]{3} [0-9]{2}">
 
                     </div>
                     <div class="changeCustomer-row">
 
                         <label class="customerLabel" for="city">City</label>
                         <input name="city" type="text" class="customerInput" id="city"
-                               th:placeholder="${customer.city}">
+                               th:placeholder="${customer.city}" min="2">
 
                         <label class="customerLabel" for="country">Country</label>
                         <input name="country" type="text" class="customerInput" id="country"
-                               th:placeholder="${customer.country}">
+                               th:placeholder="${customer.country}" min="2">
 
                     </div>
 
@@ -85,11 +85,11 @@
 
                         <label class="customerLabel" for="phoneN">Phone Number</label>
                         <input name="phone" type="text" class=" customerInput" id="phoneN"
-                               th:placeholder="${customer.phone}">
+                               th:placeholder="${customer.phone}" pattern="[0-9]{3,4}-[0-9]{6,7}" min="2">
 
                         <label class="customerLabel" for="email">Email</label>
                         <input name="email" type="email" class="customerInput" id="email"
-                               th:placeholder="${customer.email}">
+                               th:placeholder="${customer.email}" min="2">
                     </div>
                     <div id="changeCustomerBtnDiv">
                         <button id="changeCustomerBtn" class="btn btn-outline-dark" type="submit">Save Customer</button>
